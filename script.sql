@@ -89,3 +89,7 @@ ORDER BY customer_id;
 
 SELECT *
 FROM customers_log;
+
+DROP TRIGGER IF EXISTS customer_min_age ON customers;
+
+SELECT * FROM information_schema.triggers;
