@@ -52,3 +52,40 @@ ORDER BY customer_id;
 
 SELECT *
 FROM customers_log;
+
+CREATE TRIGGER customer_min_age
+BEFORE UPDATE ON customers
+FOR EACH ROW
+WHEN (NEW.years_old < 13)
+EXECUTE PROCEDURE override_with_min_age();
+
+UPDATE customers
+SET years_old = 14
+WHERE customer_id = 1;
+
+UPDATE customers
+SET years_old = 12
+WHERE customer_id = 3;
+
+UPDATE customers
+SET years_old = 13
+WHERE customer_id = 5;
+
+SELECT *
+FROM customers
+ORDER BY customer_id;
+
+SELECT *
+FROM customers_log;
+
+UPDATE customers
+SET years_old = 8,
+    first_name = 'John'
+WHERE customer_id = 6;
+
+SELECT *
+FROM customers
+ORDER BY customer_id;
+
+SELECT *
+FROM customers_log;
